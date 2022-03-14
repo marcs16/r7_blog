@@ -12,7 +12,10 @@
   </head>
 
   <body>
-    <%= render 'layouts/partials/navbar'%>
+    <header>
+      <%= render 'layouts/partials/navbar'%>
+      <%= render 'layouts/partials/alerts' %>
+    </header>
     <main>
       <%= yield %>
     </main>
