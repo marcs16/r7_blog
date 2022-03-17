@@ -1,5 +1,4 @@
 <div class= "container">
-  <p style="color: green"><%= notice %></p>
 
   <%= render @post %>
 
@@ -10,4 +9,10 @@
     <%= button_to "Destroy this post",  @post, method: :delete, form: {data: {turbo_confirm: "are you sure?"}} %>
   </div>
 
+</div>
+<div class= "container">
+  <%= render 'comments/form', post: @post %></br>
+  <% @comments.each do |comment| %>
+    <%= render 'comments/comment', post: @post, comment: comment %></br>
+  <% end %>
 </div>
