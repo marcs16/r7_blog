@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
     before_action :authenticate_user!
 
     def create
-        
         @comment = @post.comments.create(comment_params)
         @comment.user = current_user
 
@@ -13,6 +12,17 @@ class CommentsController < ApplicationController
         else
             flash[:alert] =  "Comment has not crreate"
             redirect_to post_path(@post)
+        end
+    end
+
+    def update
+        @comment = @post.comments.find(params[:id])
+        respond_to do |format|
+            if @comment.update(comment_params)
+                format.html { redirect_to post_url(@post), notice: "Comment was successfully updated." }
+            else
+                format.html { render post_url(@post), alert: "Comment was not updated" }
+            end
         end
     end
 
